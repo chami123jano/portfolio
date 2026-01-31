@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C. J. Ambawatta - Software Developer & Computer Science Student Portfolio">
+    <meta name="author" content="C. J. Ambawatta">
+    <title>C. J. Ambawatta | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Immediate scroll prevention - runs before anything else
+        window.scrollTo(0, 0);
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">CJA</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title fade-in">C. J. Ambawatta</h1>
+                <h2 class="hero-subtitle fade-in">Software Developer & Computer Science Student</h2>
+                <p class="hero-tagline fade-in">Building innovative solutions through code, games, and AI</p>
+                <div class="hero-cta fade-in">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="assets/profile.png" alt="C. J. Ambawatta Professional Photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display:none;">📸<br>Add profile.png to assets folder</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/profile1.png" alt="C. J. Ambawatta" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" style="display:none;">📸<br>Add profile.png</div>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Hello! I'm <strong>C. J. Ambawatta</strong>, a passionate Computer Science student pursuing my BSc at IIT 
+                        (University of Westminster) in Sri Lanka. My journey in technology is driven by a deep fascination with 
+                        creating innovative solutions that blend creativity and functionality.
+                    </p>
+                    <p>
+                        I specialize in <strong>Software Development</strong>, <strong>Game Development</strong>, and 
+                        <strong>AI Systems</strong>. From building JARVIS-style AI assistants to crafting immersive game 
+                        experiences with Unreal Engine, I'm constantly exploring the intersection of technology and innovation.
+                    </p>
+                    <p>
+                        My work spans across multiple domains including web development, mobile applications, and artificial 
+                        intelligence. I believe in writing clean, efficient code and building solutions that make a real impact.
+                    </p>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span class="info-label">Degree:</span>
+                            <span class="info-value">BSc Computer Science</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">University:</span>
+                            <span class="info-value">IIT (University of Westminster)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value">Sri Lanka</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <h3 class="category-title">Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">☕</div>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🐍</div>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">⚡</div>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">⚙️</div>
+                            <span>C++</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Technologies -->
+                <div class="skill-category">
+                    <h3 class="category-title">Web Technologies</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">🌐</div>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🎨</div>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">📱</div>
+                            <span>Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="skill-category">
+                    <h3 class="category-title">Tools & Platforms</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">🔧</div>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">💻</div>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">📝</div>
+                            <span>VS Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🎮</div>
+                            <span>Unreal Engine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interests & Specializations -->
+                <div class="skill-category">
+                    <h3 class="category-title">Focus Areas</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">🤖</div>
+                            <span>AI Systems</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🎯</div>
+                            <span>Game Development</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🌐</div>
+                            <span>Web Development</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">📱</div>
+                            <span>Mobile Apps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1: JARVIS AI Assistant -->
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">JARVIS AI Assistant</h3>
+                    <p class="project-description">
+                        An offline AI assistant inspired by JARVIS from Iron Man. Features voice recognition, 
+                        natural language processing, and task automation capabilities. Built with Python and 
+                        advanced AI libraries.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Unreal Engine Game -->
+                <div class="project-card">
+                    <div class="project-icon">🎮</div>
+                    <h3 class="project-title">Unreal Engine Game Project</h3>
+                    <p class="project-description">
+                        A 3D game developed using Unreal Engine 5 with advanced gameplay mechanics, stunning 
+                        visuals, and immersive storytelling. Features custom C++ scripts and blueprint systems 
+                        for dynamic gameplay.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Unreal Engine</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Game Dev</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Solar Scope App -->
+                <div class="project-card">
+                    <div class="project-icon">☀️</div>
+                    <h3 class="project-title">Solar Scope Mobile App</h3>
+                    <p class="project-description">
+                        A mobile application that provides real-time solar data, energy calculations, and 
+                        sustainability insights. Features intuitive UI/UX design and data visualization for 
+                        renewable energy monitoring.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Mobile Dev</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Web Development Projects -->
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h3 class="project-title">Web Development Portfolio</h3>
+                    <p class="project-description">
+                        A collection of modern, responsive websites built with HTML, CSS, and JavaScript. 
+                        Features clean code, smooth animations, and professional design principles. Includes 
+                        landing pages, dashboards, and interactive web apps.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-intro">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:ambawattaj@gmail.com">ambawattaj@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/chami123jano" target="_blank">@chami123jano</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank">C. J. Ambawatta</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 C. J. Ambawatta. All rights reserved.</p>
+            <p>Built with passion using HTML, CSS, and JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
