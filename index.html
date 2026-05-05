@@ -1,99 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="C. J. Ambawatta - Computer Science Student and Software Developer specializing in AI Systems, Game Development, and Web Applications. BSc Computer Science at IIT (University of Westminster).">
-    <meta name="author" content="C. J. Ambawatta">
-    <meta name="keywords" content="Software Developer, Computer Science, AI Systems, Game Development, Web Development, Python, Java, Unreal Engine">
-    <title>C. J. Ambawatta | Portfolio</title>
+    <title>C. J. Ambawatta | Super Developer Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script>
-        // Immediate scroll prevention - runs before anything else
-        window.scrollTo(0, 0);
-        if (window.location.hash) {
-            history.replaceState(null, null, window.location.pathname);
-        }
-    </script>
 </head>
 <body>
+    <!-- Dynamic Background -->
+    <canvas id="particle-canvas"></canvas>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-brand">CJA</div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+        <div class="nav-content">
+            <div class="logo">CJA<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
+    <section id="home" class="hero">
+        <div class="hero-container">
             <div class="hero-text">
-                <h1 class="hero-title fade-in">C. J. Ambawatta</h1>
-                <h2 class="hero-subtitle fade-in">Software Developer & Computer Science Student</h2>
-                <p class="hero-tagline fade-in">Transforming ideas into innovative solutions through code, AI, and game development</p>
-                <div class="hero-cta fade-in">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <p class="greeting glitch" data-text="System Initialized // Ready">System Initialized // Ready</p>
+                <h1 class="main-title">
+                    I'm <span class="neon-text">C. J. Ambawatta</span>
+                </h1>
+                <h2 class="typewriter-text"><span id="typewriter"></span><span class="cursor">|</span></h2>
+                <p class="hero-desc fade-up">I engineer high-performance software, craft immersive game environments, and architect intelligent AI systems. Let's push the boundaries of technology.</p>
+                <div class="hero-btns fade-up" style="animation-delay: 0.2s;">
+                    <a href="#projects" class="btn btn-glow">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
                 </div>
             </div>
-            <div class="hero-image fade-in">
-                <img src="assets/profile.png" alt="C. J. Ambawatta Professional Photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="image-placeholder" style="display:none;">📸<br>Add profile.png to assets folder</div>
+            <div class="hero-visual fade-in">
+                <div class="orb core-orb"></div>
+                <div class="orb orbit-orb-1"></div>
+                <div class="orb orbit-orb-2"></div>
+                <div class="floating-tech icon-python">🐍</div>
+                <div class="floating-tech icon-dev">💻</div>
+                <div class="floating-tech icon-game">🎮</div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section id="about" class="about slide-up-section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="assets/profile1.png" alt="C. J. Ambawatta" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display:none;">📸<br>Add profile.png</div>
+            <h2 class="section-title">Initialize <span class="highlight">Me</span></h2>
+            <div class="about-grid">
+                <div class="about-card glass">
+                    <div class="profile-frame">
+                        <div class="frame-border"></div>
+                        <img src="assets/profile.png" alt="Profile" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\' height=\'100%\' fill=\'%231a1a2e\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%2300f2fe\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Add Profile.png</text></svg>'">
+                    </div>
                 </div>
-                <div class="about-text">
-                    <p>
-                        Hello! I'm <strong>C. J. Ambawatta</strong>, a passionate Computer Science student pursuing my BSc at IIT 
-                        (University of Westminster) in Sri Lanka. My journey in technology is driven by a deep fascination with 
-                        creating innovative solutions that blend creativity and functionality.
-                    </p>
-                    <p>
-                        I specialize in <strong>Software Development</strong>, <strong>Game Development</strong>, and 
-                        <strong>AI Systems</strong>. From building JARVIS-style AI assistants to crafting immersive game 
-                        experiences with Unreal Engine, I'm constantly exploring the intersection of technology and innovation.
-                    </p>
-                    <p>
-                        My work spans across multiple domains including web development, mobile applications, and artificial 
-                        intelligence. I believe in writing clean, efficient code and building solutions that make a real impact.
-                    </p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <span class="info-label">Degree:</span>
-                            <span class="info-value">BSc Computer Science</span>
+                <div class="about-text glass">
+                    <h3>A Developer with <span class="highlight">Vision</span></h3>
+                    <p>I am currently pursuing a BSc in Computer Science at IIT (University of Westminster). I don't just write code; I construct digital ecosystems engineered for performance, scale, and beauty.</p>
+                    <p>Whether it's building a JARVIS-like AI, rendering custom game mechanics in Unreal Engine, or developing full-stack web applications, I demand excellence in every line of syntax.</p>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <h4>BSc</h4>
+                            <span>Computer Science</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">University:</span>
-                            <span class="info-value">IIT (University of Westminster)</span>
+                        <div class="stat">
+                            <h4>3+</h4>
+                            <span>Core Domains</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Location:</span>
-                            <span class="info-value">Sri Lanka</span>
+                        <div class="stat">
+                            <h4>100%</h4>
+                            <span>Passion</span>
                         </div>
                     </div>
                 </div>
@@ -102,209 +94,175 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills" id="skills">
+    <section id="skills" class="skills slide-up-section">
         <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <!-- Programming Languages -->
-                <div class="skill-category">
-                    <h3 class="category-title">Programming Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <div class="skill-icon">☕</div>
-                            <span>Java</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🐍</div>
+            <h2 class="section-title">My <span class="highlight">Arsenal</span></h2>
+            <div class="skills-wrapper">
+                
+                <div class="skill-category glass hover-tilt">
+                    <div class="category-header">
+                        <i class="icon">⚙️</i>
+                        <h3>Core Languages</h3>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
                             <span>Python</span>
+                            <span>95%</span>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">⚡</div>
-                            <span>JavaScript</span>
+                        <div class="progress-track"><div class="progress-fill" data-width="95%"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
+                            <span>Java</span>
+                            <span>90%</span>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">⚙️</div>
+                        <div class="progress-track"><div class="progress-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
                             <span>C++</span>
+                            <span>80%</span>
                         </div>
+                        <div class="progress-track"><div class="progress-fill" data-width="80%"></div></div>
                     </div>
                 </div>
 
-                <!-- Web Technologies -->
-                <div class="skill-category">
-                    <h3 class="category-title">Web Technologies</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <div class="skill-icon">🌐</div>
-                            <span>HTML5</span>
+                <div class="skill-category glass hover-tilt">
+                    <div class="category-header">
+                        <i class="icon">🌐</i>
+                        <h3>Web Tech</h3>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
+                            <span>HTML & CSS</span>
+                            <span>90%</span>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🎨</div>
-                            <span>CSS3</span>
+                        <div class="progress-track"><div class="progress-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
+                            <span>JavaScript</span>
+                            <span>85%</span>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">📱</div>
-                            <span>Responsive Design</span>
+                        <div class="progress-track"><div class="progress-fill" data-width="85%"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-info">
+                            <span>React / Modern Frameworks</span>
+                            <span>75%</span>
                         </div>
+                        <div class="progress-track"><div class="progress-fill" data-width="75%"></div></div>
                     </div>
                 </div>
 
-                <!-- Tools & Platforms -->
-                <div class="skill-category">
-                    <h3 class="category-title">Tools & Platforms</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <div class="skill-icon">🔧</div>
-                            <span>Git</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">💻</div>
-                            <span>GitHub</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">📝</div>
-                            <span>VS Code</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🎮</div>
-                            <span>Unreal Engine</span>
-                        </div>
+                <div class="skill-category glass hover-tilt">
+                    <div class="category-header">
+                        <i class="icon">🚀</i>
+                        <h3>Specializations</h3>
                     </div>
+                    <ul class="special-list">
+                        <li><span class="cyber-bullet"></span> Unreal Engine 3D Dev</li>
+                        <li><span class="cyber-bullet"></span> AI & Machine Learning</li>
+                        <li><span class="cyber-bullet"></span> System Architecture</li>
+                        <li><span class="cyber-bullet"></span> Game Mechanics Design</li>
+                    </ul>
                 </div>
 
-                <!-- Interests & Specializations -->
-                <div class="skill-category">
-                    <h3 class="category-title">Focus Areas</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <div class="skill-icon">🤖</div>
-                            <span>AI Systems</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🎯</div>
-                            <span>Game Development</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🌐</div>
-                            <span>Web Development</span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">📱</div>
-                            <span>Mobile Apps</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects">
+    <section id="projects" class="projects slide-up-section">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Master <span class="highlight">Projects</span></h2>
             <div class="projects-grid">
-                <!-- Project 1: JARVIS AI Assistant -->
-                <div class="project-card">
-                    <div class="project-icon">🤖</div>
-                    <h3 class="project-title">JARVIS AI Assistant</h3>
-                    <p class="project-description">
-                        An offline AI assistant inspired by JARVIS from Iron Man. Features voice recognition, 
-                        natural language processing, and task automation capabilities. Built with Python and 
-                        advanced AI libraries.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">AI/ML</span>
-                        <span class="tag">NLP</span>
+                
+                <div class="card-3d-wrap">
+                    <div class="project-card glass card-3d">
+                        <div class="card-glare"></div>
+                        <div class="project-img">
+                            <div class="overlay-gradient"></div>
+                            <div class="icon-huge">🤖</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>JARVIS AI Assistant</h3>
+                            <p>An advanced offline AI assistant. Integrated with NLP, voice recognition, and heavy automation scripts using Python.</p>
+                            <div class="tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">AI/ML</span>
+                                <span class="tag">NLP</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Unreal Engine Game -->
-                <div class="project-card">
-                    <div class="project-icon">🎮</div>
-                    <h3 class="project-title">Unreal Engine Game Project</h3>
-                    <p class="project-description">
-                        A 3D game developed using Unreal Engine 5 with advanced gameplay mechanics, stunning 
-                        visuals, and immersive storytelling. Features custom C++ scripts and blueprint systems 
-                        for dynamic gameplay.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Unreal Engine</span>
-                        <span class="tag">C++</span>
-                        <span class="tag">Game Dev</span>
+                <div class="card-3d-wrap">
+                    <div class="project-card glass card-3d">
+                        <div class="card-glare"></div>
+                        <div class="project-img" style="filter: hue-rotate(120deg);">
+                            <div class="overlay-gradient"></div>
+                            <div class="icon-huge">🎮</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Unreal Engine Sandbox</h3>
+                            <p>A sprawling 3D game environment featuring bespoke C++ mechanics, blueprint architecture, and stunning visual fidelity.</p>
+                            <div class="tags">
+                                <span class="tag">Unreal Engine</span>
+                                <span class="tag">C++</span>
+                                <span class="tag">Game Dev</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Project 3: Solar Scope App -->
-                <div class="project-card">
-                    <div class="project-icon">☀️</div>
-                    <h3 class="project-title">Solar Scope Mobile App</h3>
-                    <p class="project-description">
-                        A mobile application that provides real-time solar data, energy calculations, and 
-                        sustainability insights. Features intuitive UI/UX design and data visualization for 
-                        renewable energy monitoring.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Mobile Dev</span>
-                        <span class="tag">Java</span>
-                        <span class="tag">UI/UX</span>
+                <div class="card-3d-wrap">
+                    <div class="project-card glass card-3d">
+                        <div class="card-glare"></div>
+                        <div class="project-img" style="filter: hue-rotate(240deg);">
+                            <div class="overlay-gradient"></div>
+                            <div class="icon-huge">☀️</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Solar Scope</h3>
+                            <p>A sophisticated mobile application engineered to track real-time solar array data and sustainability metrics.</p>
+                            <div class="tags">
+                                <span class="tag">Mobile</span>
+                                <span class="tag">Java</span>
+                                <span class="tag">UI/UX</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Project 4: Web Development Projects -->
-                <div class="project-card">
-                    <div class="project-icon">🌐</div>
-                    <h3 class="project-title">Web Development Portfolio</h3>
-                    <p class="project-description">
-                        A collection of modern, responsive websites built with HTML, CSS, and JavaScript. 
-                        Features clean code, smooth animations, and professional design principles. Includes 
-                        landing pages, dashboards, and interactive web apps.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Responsive</span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="contact" class="contact slide-up-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-intro">
-                I'm always open to discussing new projects, innovative ideas, and opportunities to collaborate. Let's connect and create something exceptional together.
-            </p>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com" target="_blank" rel="noopener noreferrer">ambawattaj@gmail.com</a>
+            <h2 class="section-title">Deploy <span class="highlight">Connection</span></h2>
+            <div class="contact-card glass text-center">
+                <h3>Ready to build the future?</h3>
+                <p>My inbox is open for cutting-edge projects, technical collaborations, and visionary ideas.</p>
+                <div class="contact-links">
+                    <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com&su=New%20Inquiry%20from%20Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-glow pulse-btn">Email Me Now</a>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon">💻</div>
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer">@chami123jano</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+                <div class="social-zone">
+                    <a href="https://github.com/chami123jano" target="_blank" class="social-icon">GITHUB</a>
+                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" class="social-icon">LINKEDIN</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 C. J. Ambawatta. All Rights Reserved.</p>
-            <p>Computer Science Student | Software Developer | AI Enthusiast</p>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 C. J. Ambawatta. All systems operational.</p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
