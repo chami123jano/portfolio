@@ -1,42 +1,61 @@
-// Wait for DOM
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* =========================================================
-       1. PARTICLE BACKGROUND SYSTEM (HIGH PERFORMANCE)
-       ========================================================= */
+    /* ==========================================================
+       1. LOADING SCREEN
+       ========================================================== */
+    const loader = document.getElementById('loader');
+
+    window.addEventListener('load', () => {
+        setTimeout(() => loader.classList.add('hidden'), 1600);
+    });
+
+    /* ==========================================================
+       2. SCROLL PROGRESS BAR
+       ========================================================== */
+    const scrollBar = document.getElementById('scrollProgress');
+
+    window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        scrollBar.style.width = ((window.scrollY / total) * 100) + '%';
+    }, { passive: true });
+
+    /* ==========================================================
+       3. PARTICLE BACKGROUND
+       ========================================================== */
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
-    
-    let width, height;
-    let particles = [];
+    let W, H;
 
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+    function resizeCanvas() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
     }
-    
-    window.addEventListener('resize', resize);
-    resize();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
 
     class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            // Smaller particles, subtle colors
-            this.size = Math.random() * 2;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
-            this.color = Math.random() > 0.5 ? 'rgba(0, 242, 254, 0.4)' : 'rgba(255, 0, 123, 0.4)';
-        }
-        
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+        constructor() { this.reset(true); }
 
-            if (this.x > width) this.x = 0;
-            if (this.x < 0) this.x = width;
-            if (this.y > height) this.y = 0;
-            if (this.y < 0) this.y = height;
+        reset(randomY = false) {
+            this.x = Math.random() * W;
+            this.y = randomY ? Math.random() * H : Math.random() * H;
+            this.size = Math.random() * 1.5 + 0.3;
+            this.vx = (Math.random() - 0.5) * 0.25;
+            this.vy = (Math.random() - 0.5) * 0.25;
+            this.opacity = Math.random() * 0.35 + 0.05;
+            const r = Math.random();
+            this.color = r > 0.65
+                ? `rgba(168,85,247,${this.opacity})`
+                : r > 0.35
+                    ? `rgba(6,182,212,${this.opacity})`
+                    : `rgba(244,114,182,${this.opacity})`;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > W) this.vx *= -1;
+            if (this.y < 0 || this.y > H) this.vy *= -1;
         }
 
         draw() {
@@ -47,28 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize particles depending on screen size for performance
-    const particleCount = window.innerWidth < 768 ? 40 : 100;
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+    const PARTICLE_COUNT = window.innerWidth < 768 ? 50 : 110;
+    const particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+
+    function drawBackground() {
+        const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.7);
+        g.addColorStop(0, '#0d1224');
+        g.addColorStop(1, '#050816');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
     }
 
     function animateParticles() {
-        ctx.clearRect(0, 0, width, height);
-        
+        drawBackground();
+
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
             particles[i].draw();
-            
-            // Draw connecting lines if close
-            for (let j = i; j < particles.length; j++) {
+
+            for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 100) {
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 110) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance/1000})`;
+                    ctx.strokeStyle = `rgba(168,85,247,${0.05 * (1 - dist / 110)})`;
                     ctx.lineWidth = 0.5;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -76,138 +98,146 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+
         requestAnimationFrame(animateParticles);
     }
+
     animateParticles();
 
-    /* =========================================================
-       2. TYPEWRITER EFFECT
-       ========================================================= */
-    const typeWriterElement = document.getElementById('typewriter');
-    const words = [
-        "Software Engineer.",
-        "AI Innovator.",
-        "Game Developer.",
-        "Problem Solver."
-    ];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeEffect() {
-        const currentWord = words[wordIndex];
-        
-        if (isDeleting) {
-            typeWriterElement.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typeWriterElement.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        let typeSpeed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            typeSpeed = 2000; // Pause at end of word
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500; // Pause before typing next word
-        }
-
-        setTimeout(typeEffect, typeSpeed);
-    }
-    
-    // Start typing after a short delay
-    setTimeout(typeEffect, 1000);
-
-    /* =========================================================
-       3. NAVBAR & MOBILE MENU
-       ========================================================= */
-    const navbar = document.getElementById('navbar');
-    const burger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links li a');
+    /* ==========================================================
+       4. NAVBAR — SCROLL STATE & ACTIVE LINK TRACKING
+       ========================================================== */
+    const navbar   = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 220) current = sec.id;
+        });
+        navAnchors.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+        });
+    }, { passive: true });
+
+    /* ==========================================================
+       5. MOBILE MENU
+       ========================================================== */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-        burger.classList.toggle('toggle'); // Custom animation logic can be added in CSS
-    });
-
-    links.forEach(link => {
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('nav-active');
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 
-    /* =========================================================
-       4. SCROLL REVEAL & PROGRESS BAR ANIMATION
-       ========================================================= */
-    const revealElements = document.querySelectorAll('.slide-up-section');
-    const progressFills = document.querySelectorAll('.progress-fill');
+    /* ==========================================================
+       6. TYPEWRITER EFFECT
+       ========================================================== */
+    const typeEl = document.getElementById('typewriter');
+    const words  = ['Software Engineer.', 'AI Developer.', 'Game Developer.', 'Problem Solver.'];
+    let wIdx = 0, cIdx = 0, deleting = false;
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    function typeEffect() {
+        const word = words[wIdx];
+        typeEl.textContent = deleting
+            ? word.substring(0, cIdx - 1)
+            : word.substring(0, cIdx + 1);
+
+        deleting ? cIdx-- : cIdx++;
+
+        let speed = deleting ? 40 : 90;
+        if (!deleting && cIdx === word.length) { speed = 2000; deleting = true; }
+        else if (deleting && cIdx === 0) { deleting = false; wIdx = (wIdx + 1) % words.length; speed = 400; }
+
+        setTimeout(typeEffect, speed);
+    }
+    setTimeout(typeEffect, 900);
+
+    /* ==========================================================
+       7. SCROLL REVEAL
+       ========================================================== */
+    const revealEls = document.querySelectorAll('.reveal-section');
+    const barFills  = document.querySelectorAll('.bar-fill');
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Trigger Progress Bars if inside Skills section
-                if (entry.target.id === 'skills') {
-                    progressFills.forEach(bar => {
-                        bar.style.width = bar.getAttribute('data-width');
-                    });
-                }
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            if (entry.target.id === 'skills') {
+                barFills.forEach(fill => { fill.style.width = fill.getAttribute('data-width'); });
             }
         });
-    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0.1 });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealEls.forEach(el => revealObserver.observe(el));
 
-    /* =========================================================
-       5. 3D CARD TILT EFFECT (Vanilla JS Math)
-       ========================================================= */
-    const cards3D = document.querySelectorAll('.card-3d, .hover-tilt');
+    /* ==========================================================
+       8. ANIMATED STAT COUNTERS
+       ========================================================== */
+    const statNums = document.querySelectorAll('.stat-num');
 
-    // Only apply on non-touch devices for better performance
-    if (window.matchMedia("(pointer: fine)").matches) {
-        cards3D.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Calculate rotation based on mouse position
-                const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg
-                const rotateY = ((x - centerX) / centerX) * 10;  // Max 10deg
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting || entry.target.dataset.counted) return;
+            entry.target.dataset.counted = '1';
+            const target = parseInt(entry.target.getAttribute('data-target'), 10);
+            const start  = performance.now();
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            function tick(now) {
+                const p = Math.min((now - start) / 1400, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                entry.target.textContent = Math.floor(eased * target);
+                if (p < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        });
+    }, { threshold: 0.6 });
 
-                // Update glare position if exists
-                const glare = card.querySelector('.card-glare');
-                if (glare) {
-                    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2), transparent 40%)`;
-                }
+    statNums.forEach(el => counterObserver.observe(el));
+
+    /* ==========================================================
+       9. 3D CARD TILT
+       ========================================================== */
+    if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            const wrap = card.closest('.perspective-wrap') || card;
+
+            wrap.addEventListener('mousemove', e => {
+                const r  = card.getBoundingClientRect();
+                const rx = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -5;
+                const ry = ((e.clientX - r.left  - r.width  / 2) / (r.width  / 2)) *  5;
+                card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.015,1.015,1.015)`;
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                const glare = card.querySelector('.card-glare');
-                if (glare) {
-                    glare.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 50%)`;
-                }
+            wrap.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
             });
         });
     }
+
+    /* ==========================================================
+       10. BACK TO TOP
+       ========================================================== */
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });

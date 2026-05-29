@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C. J. Ambawatta | Super Developer Portfolio</title>
-    <!-- Google Fonts -->
+    <title>C. J. Ambawatta | Software Engineer & AI Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Dynamic Background -->
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">CJA<span>.</span></div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <p class="loader-text">Initializing Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Background -->
     <canvas id="particle-canvas"></canvas>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-content">
-            <div class="logo">CJA<span>.</span></div>
+            <a href="#home" class="logo">CJA<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -25,237 +42,314 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <div class="nav-cta">
+                <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-sm">Download CV</a>
             </div>
+            <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- ===================== HERO ===================== -->
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-text">
-                <p class="greeting glitch" data-text="System Initialized // Ready">System Initialized // Ready</p>
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for opportunities
+                </div>
                 <h1 class="main-title">
-                    I'm <span class="neon-text">C. J. Ambawatta</span>
+                    Hi, I'm<br>
+                    <span class="name-gradient">C. J. Ambawatta</span>
                 </h1>
-                <h2 class="typewriter-text"><span id="typewriter"></span><span class="cursor">|</span></h2>
-                <p class="hero-desc fade-up">I engineer high-performance software, craft immersive game environments, and architect intelligent AI systems. Let's push the boundaries of technology.</p>
-                <div class="hero-btns fade-up" style="animation-delay: 0.2s;">
-                    <a href="#projects" class="btn btn-glow">View Projects</a>
-                    <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-glow" style="background: rgba(255,0,123,0.1); border-color: var(--accent);">Download CV</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                <h2 class="typewriter-text">
+                    <span id="typewriter"></span><span class="cursor">|</span>
+                </h2>
+                <p class="hero-desc">
+                    I build high-performance software, craft immersive game experiences,
+                    and develop intelligent AI systems. Based in Sri Lanka — studying at IIT.
+                </p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer" class="hero-social-link">GitHub</a>
+                    <span class="social-divider">·</span>
+                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer" class="hero-social-link">LinkedIn</a>
+                    <span class="social-divider">·</span>
+                    <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="hero-social-link">Resume</a>
                 </div>
             </div>
-            <div class="hero-visual fade-in">
-                <img class="orb core-orb" src="assets/profile1.png" alt="Profile" style="object-fit: cover;">
-                <div class="orb orbit-orb-1"></div>
-                <div class="orb orbit-orb-2"></div>
-                <div class="floating-tech icon-python">🐍</div>
-                <div class="floating-tech icon-dev">💻</div>
-                <div class="floating-tech icon-game">🎮</div>
-            </img>
+
+            <div class="hero-visual">
+                <div class="hero-img-container">
+                    <div class="img-ring ring-outer"></div>
+                    <div class="img-ring ring-middle"></div>
+                    <div class="img-glow"></div>
+                    <img src="assets/profile1.png" alt="C. J. Ambawatta" class="hero-portrait">
+                </div>
+                <div class="floating-badge badge-1">
+                    <span class="fb-icon">🐍</span><span>Python</span>
+                </div>
+                <div class="floating-badge badge-2">
+                    <span class="fb-icon">☕</span><span>Java</span>
+                </div>
+                <div class="floating-badge badge-3">
+                    <span class="fb-icon">🎮</span><span>Unreal Engine</span>
+                </div>
+                <div class="floating-badge badge-4">
+                    <span class="fb-icon">🤖</span><span>AI / ML</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll to explore</span>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about slide-up-section">
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="about reveal-section">
         <div class="container">
-            <h2 class="section-title">Initialize <span class="highlight">Me</span></h2>
+            <div class="section-header">
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">The Developer <span class="gradient-text">Behind the Code</span></h2>
+            </div>
             <div class="about-grid">
-                <div class="about-card glass">
-                    <div class="profile-frame">
-                        <div class="frame-border"></div>
-                        <img src="assets/profile1.png" alt="Profile" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\' height=\'100%\' fill=\'%231a1a2e\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%2300f2fe\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Add Profile.png</text></svg>'">
+                <div class="about-image-side">
+                    <div class="about-img-frame glass">
+                        <img src="assets/profile1.png" alt="C. J. Ambawatta">
+                        <div class="img-accent-line"></div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card glass">
+                            <span class="stat-num" data-target="3">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Years Coding</span>
+                        </div>
+                        <div class="stat-card glass">
+                            <span class="stat-num" data-target="4">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-card glass">
+                            <span class="stat-num" data-target="3">0</span><span class="stat-plus"></span>
+                            <span class="stat-label">Specializations</span>
+                        </div>
                     </div>
                 </div>
-                <div class="about-text glass">
-                    <h3>A Developer with <span class="highlight">Vision</span></h3>
-                    <p>I am currently pursuing a BSc in Computer Science at IIT (University of Westminster). I don't just write code; I construct digital ecosystems engineered for performance, scale, and beauty.</p>
-                    <p>Whether it's building a JARVIS-like AI, rendering custom game mechanics in Unreal Engine, or developing full-stack web applications, I demand excellence in every line of syntax.</p>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <h4>BSc</h4>
-                            <span>Computer Science</span>
+
+                <div class="about-content">
+                    <h3>BSc Computer Science Student &amp; <span class="gradient-text">Full-Stack Developer</span></h3>
+                    <p>I'm currently pursuing my BSc in Computer Science at IIT (University of Westminster), building a strong foundation in software engineering, algorithms, and systems design.</p>
+                    <p>My passion lies at the intersection of web development, artificial intelligence, and game development. I don't just write code — I architect solutions that are performant, scalable, and elegant.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="hi-icon">🎓</div>
+                            <div>
+                                <h4>IIT — University of Westminster</h4>
+                                <span>BSc Computer Science, 2023 – Present</span>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <h4>3+</h4>
-                            <span>Core Domains</span>
+                        <div class="highlight-item">
+                            <div class="hi-icon">📍</div>
+                            <div>
+                                <h4>Sri Lanka</h4>
+                                <span>Open to remote &amp; relocation opportunities</span>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <h4>100%</h4>
-                            <span>Passion</span>
+                        <div class="highlight-item">
+                            <div class="hi-icon">💡</div>
+                            <div>
+                                <h4>Areas of Interest</h4>
+                                <span>AI/ML, Game Dev, Full-Stack, System Design</span>
+                            </div>
                         </div>
+                    </div>
+                    <div class="about-actions">
+                        <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-primary">Download CV</a>
+                        <a href="#contact" class="btn btn-ghost">Let's Talk</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills slide-up-section">
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="skills reveal-section">
         <div class="container">
-            <h2 class="section-title">My <span class="highlight">Arsenal</span></h2>
-            <div class="skills-wrapper">
-                
-                <div class="skill-category glass hover-tilt">
-                    <div class="category-header">
-                        <i class="icon">⚙️</i>
+            <div class="section-header">
+                <span class="section-label">Technical Skills</span>
+                <h2 class="section-title">My <span class="gradient-text">Tech Stack</span></h2>
+            </div>
+            <div class="skills-grid">
+
+                <div class="skill-block glass">
+                    <div class="skill-block-header">
+                        <div class="skill-icon">⚙️</div>
                         <h3>Core Languages</h3>
                     </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>Python</span>
-                            <span>95%</span>
+                    <div class="skill-bars">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>Python</span><span class="skill-pct">95%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="95%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="95%"></div></div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>Java</span>
-                            <span>90%</span>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>Java</span><span class="skill-pct">90%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="90%"></div></div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>C++</span>
-                            <span>80%</span>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>C++</span><span class="skill-pct">80%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="80%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="80%"></div></div>
                     </div>
                 </div>
 
-                <div class="skill-category glass hover-tilt">
-                    <div class="category-header">
-                        <i class="icon">🌐</i>
-                        <h3>Web Tech</h3>
+                <div class="skill-block glass">
+                    <div class="skill-block-header">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Web Development</h3>
                     </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>HTML & CSS</span>
-                            <span>90%</span>
+                    <div class="skill-bars">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>HTML &amp; CSS</span><span class="skill-pct">90%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="90%"></div></div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>JavaScript</span>
-                            <span>85%</span>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>JavaScript</span><span class="skill-pct">85%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="85%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="85%"></div></div>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-info">
-                            <span>React / Modern Frameworks</span>
-                            <span>75%</span>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-info"><span>React</span><span class="skill-pct">75%</span></div>
+                            <div class="bar-track"><div class="bar-fill" data-width="75%"></div></div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" data-width="75%"></div></div>
                     </div>
                 </div>
 
-                <div class="skill-category glass hover-tilt">
-                    <div class="category-header">
-                        <i class="icon">🚀</i>
+                <div class="skill-block glass">
+                    <div class="skill-block-header">
+                        <div class="skill-icon">🚀</div>
                         <h3>Specializations</h3>
                     </div>
-                    <ul class="special-list">
-                        <li><span class="cyber-bullet"></span> Unreal Engine 3D Dev</li>
-                        <li><span class="cyber-bullet"></span> AI & Machine Learning</li>
-                        <li><span class="cyber-bullet"></span> System Architecture</li>
-                        <li><span class="cyber-bullet"></span> Game Mechanics Design</li>
-                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Unreal Engine 5</span>
+                        <span class="tech-tag">AI &amp; ML</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">System Design</span>
+                        <span class="tech-tag">Game Mechanics</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaFX</span>
+                        <span class="tech-tag">Blueprints</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects slide-up-section">
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="projects reveal-section">
         <div class="container">
-            <h2 class="section-title">Master <span class="highlight">Projects</span></h2>
+            <div class="section-header">
+                <span class="section-label">Featured Work</span>
+                <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
+            </div>
             <div class="projects-grid">
-                
-                <div class="card-3d-wrap">
-                    <a href="https://careerverse.lk" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div class="project-card glass card-3d">
-                            <div class="card-glare"></div>
-                            <div class="project-img" style="filter: hue-rotate(60deg);">
-                                <div class="overlay-gradient"></div>
-                                <div class="icon-huge">🌐</div>
+
+                <div class="perspective-wrap">
+                    <a href="https://careerverse.lk" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
+                        <div class="card-glow"></div>
+                        <div class="project-icon-wrap icon-cyan">
+                            <span class="p-icon">🌐</span>
+                        </div>
+                        <div class="project-info">
+                            <h3>CareerVerse</h3>
+                            <p>AI-powered career recommendation and job simulation platform. Features intelligent career path suggestions based on user profiles and an intuitive UI/UX experience.</p>
+                            <div class="project-tags">
+                                <span class="ptag">HTML/CSS/JS</span>
+                                <span class="ptag">AI Logic</span>
+                                <span class="ptag">UX Design</span>
                             </div>
-                            <div class="project-content">
-                                <h3>CareerVerse</h3>
-                                <p style="font-size: 0.9rem;">Recommendation & Job Simulation Platform. Basic AI logic suggests career paths based on user input. Designed an intuitive UI/UX with interactive job simulations.</p>
-                                <div class="tags">
-                                    <span class="tag">HTML/CSS/JS</span>
-                                    <span class="tag">AI Logic</span>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="card-footer-link">
+                            <span>↗ Live Site</span>
                         </div>
                     </a>
                 </div>
 
-                <div class="card-3d-wrap">
-                    <a href="https://github.com/chami123jano/Pharmacy-Management-System" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div class="project-card glass card-3d">
-                            <div class="card-glare"></div>
-                            <div class="project-img" style="filter: hue-rotate(200deg);">
-                                <div class="overlay-gradient"></div>
-                                <div class="icon-huge">💊</div>
+                <div class="perspective-wrap">
+                    <a href="https://github.com/chami123jano/Pharmacy-Management-System" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
+                        <div class="card-glow"></div>
+                        <div class="project-icon-wrap icon-purple">
+                            <span class="p-icon">💊</span>
+                        </div>
+                        <div class="project-info">
+                            <h3>Pharmacy Management System</h3>
+                            <p>Secure desktop application for managing medicines, inventory, and transactions. Built with an optimized MySQL database schema and full CRUD functionality.</p>
+                            <div class="project-tags">
+                                <span class="ptag">Java</span>
+                                <span class="ptag">MySQL</span>
+                                <span class="ptag">JavaFX</span>
                             </div>
-                            <div class="project-content">
-                                <h3>Pharmacy Management</h3>
-                                <p style="font-size: 0.9rem;">Secure application to manage medicines, inventory, and transactions efficiently. Implemented core CRUD features and optimized MySQL database schema.</p>
-                                <div class="tags">
-                                    <span class="tag">Java</span>
-                                    <span class="tag">MySQL</span>
-                                    <span class="tag">JavaFX</span>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="card-footer-link">
+                            <span>↗ GitHub</span>
                         </div>
                     </a>
                 </div>
 
-                <div class="card-3d-wrap">
-                    <a href="https://github.com/chami123jano/JARVIS" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div class="project-card glass card-3d">
-                            <div class="card-glare"></div>
-                            <div class="project-img">
-                                <div class="overlay-gradient"></div>
-                                <div class="icon-huge">🤖</div>
+                <div class="perspective-wrap">
+                    <a href="https://github.com/chami123jano/JARVIS" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
+                        <div class="card-glow"></div>
+                        <div class="project-icon-wrap icon-pink">
+                            <span class="p-icon">🤖</span>
+                        </div>
+                        <div class="project-info">
+                            <h3>JARVIS AI Assistant</h3>
+                            <p>Offline AI assistant with voice recognition and intelligent NLP pipelines. Extensive task automation built on a scalable modular architecture.</p>
+                            <div class="project-tags">
+                                <span class="ptag">Python</span>
+                                <span class="ptag">AI/ML</span>
+                                <span class="ptag">NLP</span>
                             </div>
-                            <div class="project-content">
-                                <h3>JARVIS AI Assistant</h3>
-                                <p style="font-size: 0.9rem;">Offline AI assistant with voice recognition. Integrated intelligent NLP pipelines, extensive task automation, leveraging a scalable modular architecture.</p>
-                                <div class="tags">
-                                    <span class="tag">Python</span>
-                                    <span class="tag">AI/ML</span>
-                                    <span class="tag">NLP</span>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="card-footer-link">
+                            <span>↗ GitHub</span>
                         </div>
                     </a>
                 </div>
 
-                <div class="card-3d-wrap">
-                    <div class="project-card glass card-3d">
-                        <div class="card-glare"></div>
-                        <div class="project-img" style="filter: hue-rotate(300deg);">
-                            <div class="overlay-gradient"></div>
-                            <div class="icon-huge">🌊</div>
+                <div class="perspective-wrap">
+                    <div class="project-card glass tilt-card no-link">
+                        <div class="card-glow"></div>
+                        <div class="project-icon-wrap icon-blue">
+                            <span class="p-icon">🌊</span>
                         </div>
-                        <div class="project-content">
+                        <div class="project-info">
                             <h3>The Last Dive</h3>
-                            <p style="font-size: 0.9rem;">Sci-Fi Escape Game. First-person game set inside a flooded underwater facility. Advanced blueprints, UMG UI mechanics, and tight countdown puzzles.</p>
-                            <div class="tags">
-                                <span class="tag">Unreal Engine 5</span>
-                                <span class="tag">Blueprints</span>
-                                <span class="tag">Game Design</span>
+                            <p>Sci-fi first-person escape game set inside a flooded underwater facility. Features advanced Blueprints, UMG UI mechanics, and challenging countdown puzzles.</p>
+                            <div class="project-tags">
+                                <span class="ptag">Unreal Engine 5</span>
+                                <span class="ptag">Blueprints</span>
+                                <span class="ptag">Game Design</span>
                             </div>
+                        </div>
+                        <div class="card-footer-link muted">
+                            <span>🔒 Private Project</span>
                         </div>
                     </div>
                 </div>
@@ -264,29 +358,71 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact slide-up-section">
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="contact reveal-section">
         <div class="container">
-            <h2 class="section-title">Deploy <span class="highlight">Connection</span></h2>
-            <div class="contact-card glass text-center">
-                <h3>Ready to build the future?</h3>
-                <p>My inbox is open for cutting-edge projects, technical collaborations, and visionary ideas.</p>
-                <div class="contact-links">
-                    <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com&su=New%20Inquiry%20from%20Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-glow pulse-btn">Email Me Now</a>
+            <div class="section-header">
+                <span class="section-label">Contact</span>
+                <h2 class="section-title">Let's <span class="gradient-text">Work Together</span></h2>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-info glass">
+                    <h3>Get In Touch</h3>
+                    <p>I'm currently open to internships, freelance projects, and collaborations. Whether you have a project in mind or just want to connect — I'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+                            <div class="cd-icon">✉️</div>
+                            <div>
+                                <span class="cd-label">Email</span>
+                                <span class="cd-value">ambawattaj@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+                            <div class="cd-icon">💼</div>
+                            <div>
+                                <span class="cd-label">LinkedIn</span>
+                                <span class="cd-value">chamindu-ambawatta</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+                            <div class="cd-icon">💻</div>
+                            <div>
+                                <span class="cd-label">GitHub</span>
+                                <span class="cd-value">chami123jano</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="social-zone">
-                    <a href="https://github.com/chami123jano" target="_blank" class="social-icon">GITHUB</a>
-                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" class="social-icon">LINKEDIN</a>
+
+                <div class="contact-cta glass">
+                    <div class="cta-glow-bg"></div>
+                    <h3>Ready to build something great?</h3>
+                    <p>Let's turn your vision into reality. Send me a message and let's get the conversation started.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com&su=Collaboration%20Inquiry%20from%20Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full pulse-btn">
+                        Send a Message
+                    </a>
+                    <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-ghost btn-full">
+                        Download CV
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2026 C. J. Ambawatta. All systems operational.</p>
+            <div class="footer-logo">CJA<span>.</span></div>
+            <p>&copy; 2026 Chamindu Janodya Ambawatta. Crafted with passion.</p>
+            <div class="footer-links">
+                <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
 </body>
