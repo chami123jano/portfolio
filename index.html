@@ -1,438 +1,373 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C. J. Ambawatta | Software Engineer & AI Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Three.js (CDN, no build step) -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
-        }
-    }
-    </script>
-</head>
-<body>
-
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-inner">
-            <div class="loader-logo">CJA<span>.</span></div>
-            <div class="loader-bar"><div class="loader-progress"></div></div>
-            <p class="loader-text">Initializing Portfolio...</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="C. J. Ambawatta, a Computer Science student and developer based in Sri Lanka. Explore projects in software, local AI, and game development."
+    />
+    <meta name="theme-color" content="#151918" />
+    <meta property="og:title" content="C. J. Ambawatta | Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Software, local AI, and interactive experiences. Selected work by a developer based in Sri Lanka."
+    />
+    <meta property="og:type" content="website" />
+    <title>C. J. Ambawatta | Developer Portfolio</title>
+    <link rel="icon" href="assets/profile1.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script src="assets/three.min.js" defer></script>
+    <script src="scene3d.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+      <nav class="nav wrap" aria-label="Main navigation">
+        <a class="wordmark" href="#home" aria-label="C. J. Ambawatta home"
+          >CJA<span>.</span></a
+        >
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="navigation"
+          aria-label="Open navigation"
+          hidden
+        >
+          <img src="assets/menu.svg" alt="" width="20" height="20">
+        </button>
+        <div class="nav-links" id="navigation">
+          <a href="#projects">Selected work</a><a href="#about">About</a
+          ><a href="#skills">Expertise</a><a href="#contact">Contact</a>
+          <a class="nav-cv" href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf"
+            >Download CV <span aria-hidden="true">&#8595;</span></a
+          >
         </div>
-    </div>
-
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Background -->
-    <canvas id="particle-canvas"></canvas>
-    <div class="bg-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="#home" class="logo">CJA<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <button class="motion-toggle" type="button" aria-label="Pause animation" title="Pause animation" aria-pressed="false" hidden>&#10074;&#10074;</button>
+        <div class="hero-caption" aria-hidden="true"><span>CREATIVE DEVELOPMENT</span><span>01 / FORM &amp; FUNCTION</span></div>
+        <div class="hero-shade"></div>
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <div class="hero-identity">
+              <img class="hero-image" src="assets/profile1.png" alt="Portrait of C. J. Ambawatta" width="1122" height="1402" fetchpriority="high">
+              <p class="eyebrow availability"><span></span> Available for opportunities</p>
+            </div>
+            <h1 id="hero-title">C. J.<br />Ambawatta<span>.</span></h1>
+            <p class="hero-role">Software developer.<br /><span class="role-accent">Curious by nature.</span></p>
+            <p class="hero-description">
+              I build software, explore local AI, and create interactive
+              experiences. Computer Science student at IIT, based in Sri Lanka.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="#projects"
+                >Explore my work <span aria-hidden="true">&#8599;</span></a
+              ><a class="text-link" href="#contact"
+                >Let's talk <span aria-hidden="true">&#8594;</span></a
+              >
+            </div>
+          </div>
+          <div class="hero-bottom">
+            <span
+              >Based in Sri Lanka <span class="dot">/</span> Open to remote
+              work</span
+            ><a
+              href="https://github.com/chami123jano"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub &#8599;</a
+            ><a
+              href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn &#8599;</a
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="section work wrap"
+        id="projects"
+        aria-labelledby="work-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / Selected work</p>
+            <h2 id="work-title">Ideas, put into practice.</h2>
+          </div>
+          <p>
+            A selection of personal projects across<br class="desktop-break" />
+            software, AI, and interactive media.
+          </p>
+        </div>
+        <div class="featured-grid">
+          <article class="project">
+            <a
+              class="project-image jarvis-image"
+              href="https://github.com/chami123jano/JARVIS"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View JARVIS source on GitHub"
+              ><img
+                src="assets/jarvis-preview.png"
+                alt="JARVIS console showing conversation, system usage, and local assistant controls"
+                width="1440"
+                height="1058"
+                loading="lazy"
+              /><span class="image-link" aria-hidden="true">&#8599;</span></a
+            >
+            <div class="project-heading">
+              <h3>JARVIS</h3>
+              <span class="project-type">Local AI assistant</span>
+            </div>
+            <p>
+              A personal assistant with a local-model workflow, notes,
+              reminders, and a browser-based command console.
+            </p>
+            <ul class="tags" aria-label="JARVIS technologies">
+              <li>Python</li>
+              <li>Ollama</li>
+              <li>SQLite</li>
             </ul>
-            <div class="nav-cta">
-                <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-sm">Download CV</a>
+            <a
+              class="text-link"
+              href="https://github.com/chami123jano/JARVIS"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Explore the source <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
+          <article class="project">
+            <a
+              class="project-image lanka-image"
+              href="https://github.com/chami123jano/lanka-projects"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Lanka One source on GitHub"
+              ><img
+                src="assets/lanka-preview.png"
+                alt="Lanka One home page with everyday planning tools for Sri Lanka"
+                width="1440"
+                height="1000"
+                loading="lazy"
+              /><span class="image-link" aria-hidden="true">&#8599;</span></a
+            >
+            <div class="project-heading">
+              <h3>Lanka One</h3>
+              <span class="project-type">Everyday tools</span>
             </div>
-            <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+            <p>
+              A combined website for everyday planning in Sri Lanka, including
+              monthly expenses and tools that save data on your device.
+            </p>
+            <ul class="tags" aria-label="Lanka One technologies">
+              <li>JavaScript</li>
+              <li>HTML &amp; CSS</li>
+              <li>Local storage</li>
+            </ul>
+            <a
+              class="text-link"
+              href="https://github.com/chami123jano/lanka-projects"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Explore the source <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
         </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
-    <!-- ===================== HERO ===================== -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    Available for opportunities
-                </div>
-                <h1 class="main-title">
-                    Hi, I'm<br>
-                    <span class="name-gradient">C. J. Ambawatta</span>
-                </h1>
-                <h2 class="typewriter-text">
-                    <span id="typewriter"></span><span class="cursor">|</span>
-                </h2>
-                <p class="hero-desc">
-                    I build high-performance software, craft immersive game experiences,
-                    and develop intelligent AI systems. Based in Sri Lanka — studying at IIT.
-                </p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
-                </div>
-                <div class="hero-socials">
-                    <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer" class="hero-social-link">GitHub</a>
-                    <span class="social-divider">·</span>
-                    <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer" class="hero-social-link">LinkedIn</a>
-                    <span class="social-divider">·</span>
-                    <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="hero-social-link">Resume</a>
-                </div>
+        <div class="more-work">
+          <article class="project-row">
+            <span class="project-number">03</span>
+            <div>
+              <h3>CareerVerse</h3>
+              <p>
+                Career recommendations and job simulation through an accessible
+                web experience.
+              </p>
             </div>
-
-            <div class="hero-visual">
-                <div class="hero-img-container">
-                    <div class="img-ring ring-outer"></div>
-                    <div class="img-ring ring-middle"></div>
-                    <div class="img-glow"></div>
-                    <img src="assets/profile1.png" alt="C. J. Ambawatta" class="hero-portrait">
-                </div>
-                <div class="floating-badge badge-1">
-                    <span class="fb-icon">🐍</span><span>Python</span>
-                </div>
-                <div class="floating-badge badge-2">
-                    <span class="fb-icon">☕</span><span>Java</span>
-                </div>
-                <div class="floating-badge badge-3">
-                    <span class="fb-icon">🎮</span><span>Unreal Engine</span>
-                </div>
-                <div class="floating-badge badge-4">
-                    <span class="fb-icon">🤖</span><span>AI / ML</span>
-                </div>
+            <span class="row-category">Web development</span
+            ><a
+              href="https://careerverse.lk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit CareerVerse"
+              >Live site <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
+          <article class="project-row">
+            <span class="project-number">04</span>
+            <div>
+              <h3>Pharmacy Management System</h3>
+              <p>
+                A desktop application for medicines, inventory, and
+                transactions, built with JavaFX and MySQL.
+              </p>
             </div>
+            <span class="row-category">Desktop software</span
+            ><a
+              href="https://github.com/chami123jano/Pharmacy-Management-System"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Pharmacy Management System on GitHub"
+              >Source <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
+          <article class="project-row">
+            <span class="project-number">05</span>
+            <div>
+              <h3>The Last Dive</h3>
+              <p>
+                A first-person underwater escape game with countdown puzzles,
+                built in Unreal Engine 5.
+              </p>
+            </div>
+            <span class="row-category">Game development</span
+            ><span class="private-label">Private project</span>
+          </article>
         </div>
-
-        <div class="scroll-hint">
-            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-            <span>Scroll to explore</span>
+      </section>
+      <section class="about-band" id="about" aria-labelledby="about-title">
+        <div class="wrap about-layout">
+          <div>
+            <p class="eyebrow">02 / A little about me</p>
+            <h2 id="about-title">A thoughtful approach.<br />An open mind.</h2>
+          </div>
+          <div class="about-copy">
+            <p class="lead">
+              I'm a Computer Science student who enjoys turning an idea into
+              something people can use.
+            </p>
+            <p>
+              I'm pursuing my BSc at IIT, affiliated with the University of
+              Westminster. My interests span full-stack development, artificial
+              intelligence, and game development.
+            </p>
+            <p>
+              From a local assistant to a desktop inventory system, my projects
+              give me opportunities to explore how interfaces, data, and
+              application logic fit together.
+            </p>
+            <div class="education">
+              <span class="eyebrow">Education</span>
+              <h3>BSc Computer Science</h3>
+              <p>IIT / University of Westminster<br />2023 &ndash; Present</p>
+            </div>
+            <a
+              class="text-link"
+              href="assets/cv.pdf"
+              download="C_J_Ambawatta_CV.pdf"
+              >Download my CV <span aria-hidden="true">&#8595;</span></a
+            >
+          </div>
         </div>
-    </section>
-
-    <!-- ===================== ABOUT ===================== -->
-    <section id="about" class="about reveal-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">About Me</span>
-                <h2 class="section-title">The Developer <span class="gradient-text">Behind the Code</span></h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-image-side">
-                    <div class="about-img-frame glass">
-                        <img src="assets/profile1.png" alt="C. J. Ambawatta">
-                        <div class="img-accent-line"></div>
-                    </div>
-                    <div class="about-stats">
-                        <div class="stat-card glass">
-                            <span class="stat-num" data-target="3">0</span><span class="stat-plus">+</span>
-                            <span class="stat-label">Years Coding</span>
-                        </div>
-                        <div class="stat-card glass">
-                            <span class="stat-num" data-target="4">0</span><span class="stat-plus">+</span>
-                            <span class="stat-label">Projects Built</span>
-                        </div>
-                        <div class="stat-card glass">
-                            <span class="stat-num" data-target="3">0</span><span class="stat-plus"></span>
-                            <span class="stat-label">Specializations</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-content">
-                    <h3>BSc Computer Science Student &amp; <span class="gradient-text">Full-Stack Developer</span></h3>
-                    <p>I'm currently pursuing my BSc in Computer Science at IIT (University of Westminster), building a strong foundation in software engineering, algorithms, and systems design.</p>
-                    <p>My passion lies at the intersection of web development, artificial intelligence, and game development. I don't just write code — I architect solutions that are performant, scalable, and elegant.</p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <div class="hi-icon">🎓</div>
-                            <div>
-                                <h4>IIT — University of Westminster</h4>
-                                <span>BSc Computer Science, 2023 – Present</span>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="hi-icon">📍</div>
-                            <div>
-                                <h4>Sri Lanka</h4>
-                                <span>Open to remote &amp; relocation opportunities</span>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="hi-icon">💡</div>
-                            <div>
-                                <h4>Areas of Interest</h4>
-                                <span>AI/ML, Game Dev, Full-Stack, System Design</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-actions">
-                        <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-primary">Download CV</a>
-                        <a href="#contact" class="btn btn-ghost">Let's Talk</a>
-                    </div>
-                </div>
-            </div>
+      </section>
+      <section class="section wrap" id="skills" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / Expertise</p>
+            <h2 id="skills-title">The tools behind the work.</h2>
+          </div>
+          <p>Applied through projects.<br />Always learning something new.</p>
         </div>
-    </section>
-
-    <!-- ===================== SKILLS ===================== -->
-    <section id="skills" class="skills reveal-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Technical Skills</span>
-                <h2 class="section-title">My <span class="gradient-text">Tech Stack</span></h2>
-            </div>
-            <div class="skills-grid">
-
-                <div class="skill-block glass">
-                    <div class="skill-block-header">
-                        <div class="skill-icon">⚙️</div>
-                        <h3>Core Languages</h3>
-                    </div>
-                    <div class="skill-bars">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>Python</span><span class="skill-pct">95%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>Java</span><span class="skill-pct">90%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>C++</span><span class="skill-pct">80%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="80%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-block glass">
-                    <div class="skill-block-header">
-                        <div class="skill-icon">🌐</div>
-                        <h3>Web Development</h3>
-                    </div>
-                    <div class="skill-bars">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>HTML &amp; CSS</span><span class="skill-pct">90%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>JavaScript</span><span class="skill-pct">85%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-info"><span>React</span><span class="skill-pct">75%</span></div>
-                            <div class="bar-track"><div class="bar-fill" data-width="75%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-block glass">
-                    <div class="skill-block-header">
-                        <div class="skill-icon">🚀</div>
-                        <h3>Specializations</h3>
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Unreal Engine 5</span>
-                        <span class="tech-tag">AI &amp; ML</span>
-                        <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">System Design</span>
-                        <span class="tech-tag">Game Mechanics</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JavaFX</span>
-                        <span class="tech-tag">Blueprints</span>
-                        <span class="tech-tag">REST APIs</span>
-                        <span class="tech-tag">Git</span>
-                    </div>
-                </div>
-
-            </div>
+        <div class="skills-grid">
+          <article class="skill">
+            <span class="skill-index">01</span>
+            <h3>Software &amp; data</h3>
+            <p>Application logic, desktop interfaces, and persistent data.</p>
+            <ul class="tags">
+              <li>Python</li>
+              <li>Java</li>
+              <li>JavaFX</li>
+              <li>MySQL</li>
+              <li>SQLite</li>
+            </ul>
+            <a href="#projects"
+              >In practice: JARVIS &amp; Pharmacy
+              <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
+          <article class="skill">
+            <span class="skill-index">02</span>
+            <h3>Web development</h3>
+            <p>Responsive interfaces and practical browser-based tools.</p>
+            <ul class="tags">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Git</li>
+            </ul>
+            <a href="#projects"
+              >In practice: Lanka One &amp; CareerVerse
+              <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
+          <article class="skill">
+            <span class="skill-index">03</span>
+            <h3>AI &amp; interactive media</h3>
+            <p>Local-model integrations and game mechanics.</p>
+            <ul class="tags">
+              <li>Ollama</li>
+              <li>C++</li>
+              <li>Unreal Engine 5</li>
+              <li>Blueprints</li>
+            </ul>
+            <a href="#projects"
+              >In practice: JARVIS &amp; The Last Dive
+              <span aria-hidden="true">&#8599;</span></a
+            >
+          </article>
         </div>
-    </section>
-
-    <!-- ===================== PROJECTS ===================== -->
-    <section id="projects" class="projects reveal-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Featured Work</span>
-                <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
+      </section>
+      <section
+        class="contact-band"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap contact-layout">
+          <div>
+            <p class="eyebrow availability">
+              <span></span> Open to opportunities
+            </p>
+            <h2 id="contact-title">Let's build<br />something useful.</h2>
+            <p>
+              Have a project in mind or an opportunity to share?<br />I'd be
+              glad to hear from you.
+            </p>
+          </div>
+          <div class="contact-details">
+            <span class="eyebrow">Start a conversation</span
+            ><a class="email-link" href="mailto:ambawattaj@gmail.com"
+              >ambawattaj@gmail.com <span aria-hidden="true">&#8599;</span></a
+            ><button class="copy-email" type="button" title="Copy email address" hidden><img src="assets/copy.svg" alt="" width="16" height="16">Copy email</button>
+            <p class="copy-status" role="status" aria-live="polite"></p>
+            <div class="contact-socials">
+              <a
+                href="https://github.com/chami123jano"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub &#8599;</a
+              ><a
+                href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn &#8599;</a
+              ><a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf"
+                >Resume &#8595;</a
+              >
             </div>
-            <div class="projects-grid">
-
-                <div class="perspective-wrap">
-                    <a href="https://careerverse.lk" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
-                        <div class="card-glow"></div>
-                        <div class="project-icon-wrap icon-cyan">
-                            <span class="p-icon">🌐</span>
-                        </div>
-                        <div class="project-info">
-                            <h3>CareerVerse</h3>
-                            <p>AI-powered career recommendation and job simulation platform. Features intelligent career path suggestions based on user profiles and an intuitive UI/UX experience.</p>
-                            <div class="project-tags">
-                                <span class="ptag">HTML/CSS/JS</span>
-                                <span class="ptag">AI Logic</span>
-                                <span class="ptag">UX Design</span>
-                            </div>
-                        </div>
-                        <div class="card-footer-link">
-                            <span>↗ Live Site</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="perspective-wrap">
-                    <a href="https://github.com/chami123jano/Pharmacy-Management-System" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
-                        <div class="card-glow"></div>
-                        <div class="project-icon-wrap icon-purple">
-                            <span class="p-icon">💊</span>
-                        </div>
-                        <div class="project-info">
-                            <h3>Pharmacy Management System</h3>
-                            <p>Secure desktop application for managing medicines, inventory, and transactions. Built with an optimized MySQL database schema and full CRUD functionality.</p>
-                            <div class="project-tags">
-                                <span class="ptag">Java</span>
-                                <span class="ptag">MySQL</span>
-                                <span class="ptag">JavaFX</span>
-                            </div>
-                        </div>
-                        <div class="card-footer-link">
-                            <span>↗ GitHub</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="perspective-wrap">
-                    <a href="https://github.com/chami123jano/JARVIS" target="_blank" rel="noopener noreferrer" class="project-card glass tilt-card">
-                        <div class="card-glow"></div>
-                        <div class="project-icon-wrap icon-pink">
-                            <span class="p-icon">🤖</span>
-                        </div>
-                        <div class="project-info">
-                            <h3>JARVIS AI Assistant</h3>
-                            <p>Offline AI assistant with voice recognition and intelligent NLP pipelines. Extensive task automation built on a scalable modular architecture.</p>
-                            <div class="project-tags">
-                                <span class="ptag">Python</span>
-                                <span class="ptag">AI/ML</span>
-                                <span class="ptag">NLP</span>
-                            </div>
-                        </div>
-                        <div class="card-footer-link">
-                            <span>↗ GitHub</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="perspective-wrap">
-                    <div class="project-card glass tilt-card no-link">
-                        <div class="card-glow"></div>
-                        <div class="project-icon-wrap icon-blue">
-                            <span class="p-icon">🌊</span>
-                        </div>
-                        <div class="project-info">
-                            <h3>The Last Dive</h3>
-                            <p>Sci-fi first-person escape game set inside a flooded underwater facility. Features advanced Blueprints, UMG UI mechanics, and challenging countdown puzzles.</p>
-                            <div class="project-tags">
-                                <span class="ptag">Unreal Engine 5</span>
-                                <span class="ptag">Blueprints</span>
-                                <span class="ptag">Game Design</span>
-                            </div>
-                        </div>
-                        <div class="card-footer-link muted">
-                            <span>🔒 Private Project</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- ===================== CONTACT ===================== -->
-    <section id="contact" class="contact reveal-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Contact</span>
-                <h2 class="section-title">Let's <span class="gradient-text">Work Together</span></h2>
-            </div>
-            <div class="contact-layout">
-                <div class="contact-info glass">
-                    <h3>Get In Touch</h3>
-                    <p>I'm currently open to internships, freelance projects, and collaborations. Whether you have a project in mind or just want to connect — I'd love to hear from you.</p>
-                    <div class="contact-details">
-                        <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
-                            <div class="cd-icon">✉️</div>
-                            <div>
-                                <span class="cd-label">Email</span>
-                                <span class="cd-value">ambawattaj@gmail.com</span>
-                            </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
-                            <div class="cd-icon">💼</div>
-                            <div>
-                                <span class="cd-label">LinkedIn</span>
-                                <span class="cd-value">chamindu-ambawatta</span>
-                            </div>
-                        </a>
-                        <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
-                            <div class="cd-icon">💻</div>
-                            <div>
-                                <span class="cd-label">GitHub</span>
-                                <span class="cd-value">chami123jano</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="contact-cta glass">
-                    <div class="cta-glow-bg"></div>
-                    <h3>Ready to build something great?</h3>
-                    <p>Let's turn your vision into reality. Send me a message and let's get the conversation started.</p>
-                    <a href="https://mail.google.com/mail/?view=cm&to=ambawattaj@gmail.com&su=Collaboration%20Inquiry%20from%20Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full pulse-btn">
-                        Send a Message
-                    </a>
-                    <a href="assets/cv.pdf" download="C_J_Ambawatta_CV.pdf" class="btn btn-ghost btn-full">
-                        Download CV
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">CJA<span>.</span></div>
-            <p>&copy; 2026 Chamindu Janodya Ambawatta. Crafted with passion.</p>
-            <div class="footer-links">
-                <a href="https://github.com/chami123jano" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.linkedin.com/in/chamindu-ambawatta-7465293a8" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-        </div>
+      </section>
+    </main>
+    <footer class="wrap footer">
+      <a class="wordmark" href="#home">CJA<span>.</span></a>
+      <p>&copy; <span id="year">2026</span> C. J. Ambawatta</p>
+      <a href="#home">Back to top <span aria-hidden="true">&#8593;</span></a>
     </footer>
-
-    <!-- Back to Top -->
-    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
-
-    <script src="script.js"></script>
-    <script type="module" src="scene3d.js"></script>
-</body>
+  </body>
 </html>
