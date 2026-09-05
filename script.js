@@ -1,165 +1,84 @@
-document.addEventListener('DOMContentLoaded', () => {
+const menuButton = document.querySelector(".menu-toggle");
+const navigation = document.querySelector("#navigation");
+const header = document.querySelector(".header");
+const mobile = window.matchMedia("(max-width: 700px)");
 
-    /* ==========================================================
-       1. LOADING SCREEN
-       ========================================================== */
-    const loader = document.getElementById('loader');
-
-    window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 1600);
-    });
-
-    /* ==========================================================
-       2. SCROLL PROGRESS BAR
-       ========================================================== */
-    const scrollBar = document.getElementById('scrollProgress');
-
-    window.addEventListener('scroll', () => {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        scrollBar.style.width = ((window.scrollY / total) * 100) + '%';
-    }, { passive: true });
-
-    /* ==========================================================
-       3. 3D BACKGROUND
-       ----------------------------------------------------------
-       The #particle-canvas is now driven by Three.js — see the
-       ES module in scene3d.js (loaded via <script type="module">).
-       ========================================================== */
-
-    /* ==========================================================
-       4. NAVBAR — SCROLL STATE & ACTIVE LINK TRACKING
-       ========================================================== */
-    const navbar   = document.getElementById('navbar');
-    const sections = document.querySelectorAll('section[id]');
-    const navAnchors = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
-
-        let current = '';
-        sections.forEach(sec => {
-            if (window.scrollY >= sec.offsetTop - 220) current = sec.id;
-        });
-        navAnchors.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
-        });
-    }, { passive: true });
-
-    /* ==========================================================
-       5. MOBILE MENU
-       ========================================================== */
-    const hamburger  = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    hamburger.addEventListener('click', () => {
-        const open = mobileMenu.classList.toggle('open');
-        hamburger.classList.toggle('active', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-
-    /* ==========================================================
-       6. TYPEWRITER EFFECT
-       ========================================================== */
-    const typeEl = document.getElementById('typewriter');
-    const words  = ['Software Engineer.', 'AI Developer.', 'Game Developer.', 'Problem Solver.'];
-    let wIdx = 0, cIdx = 0, deleting = false;
-
-    function typeEffect() {
-        const word = words[wIdx];
-        typeEl.textContent = deleting
-            ? word.substring(0, cIdx - 1)
-            : word.substring(0, cIdx + 1);
-
-        deleting ? cIdx-- : cIdx++;
-
-        let speed = deleting ? 40 : 90;
-        if (!deleting && cIdx === word.length) { speed = 2000; deleting = true; }
-        else if (deleting && cIdx === 0) { deleting = false; wIdx = (wIdx + 1) % words.length; speed = 400; }
-
-        setTimeout(typeEffect, speed);
-    }
-    setTimeout(typeEffect, 900);
-
-    /* ==========================================================
-       7. SCROLL REVEAL
-       ========================================================== */
-    const revealEls = document.querySelectorAll('.reveal-section');
-    const barFills  = document.querySelectorAll('.bar-fill');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('visible');
-            if (entry.target.id === 'skills') {
-                barFills.forEach(fill => { fill.style.width = fill.getAttribute('data-width'); });
-            }
-        });
-    }, { threshold: 0.1 });
-
-    revealEls.forEach(el => revealObserver.observe(el));
-
-    /* ==========================================================
-       8. ANIMATED STAT COUNTERS
-       ========================================================== */
-    const statNums = document.querySelectorAll('.stat-num');
-
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting || entry.target.dataset.counted) return;
-            entry.target.dataset.counted = '1';
-            const target = parseInt(entry.target.getAttribute('data-target'), 10);
-            const start  = performance.now();
-
-            function tick(now) {
-                const p = Math.min((now - start) / 1400, 1);
-                const eased = 1 - Math.pow(1 - p, 3);
-                entry.target.textContent = Math.floor(eased * target);
-                if (p < 1) requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-        });
-    }, { threshold: 0.6 });
-
-    statNums.forEach(el => counterObserver.observe(el));
-
-    /* ==========================================================
-       9. 3D CARD TILT
-       ========================================================== */
-    if (window.matchMedia('(pointer: fine)').matches) {
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            const wrap = card.closest('.perspective-wrap') || card;
-
-            wrap.addEventListener('mousemove', e => {
-                const r  = card.getBoundingClientRect();
-                const rx = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -5;
-                const ry = ((e.clientX - r.left  - r.width  / 2) / (r.width  / 2)) *  5;
-                card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.015,1.015,1.015)`;
-            });
-
-            wrap.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-            });
-        });
-    }
-
-    /* ==========================================================
-       10. BACK TO TOP
-       ========================================================== */
-    const backToTop = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-        backToTop.classList.toggle('visible', window.scrollY > 500);
-    }, { passive: true });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+function setMenu(open) {
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute(
+    "aria-label",
+    open ? "Close navigation" : "Open navigation",
+  );
+  navigation.hidden = mobile.matches && !open;
+  header.classList.toggle("menu-open", mobile.matches && open);
+}
+function syncMenu() {
+  menuButton.hidden = !mobile.matches;
+  setMenu(false);
+}
+menuButton.addEventListener("click", () =>
+  setMenu(menuButton.getAttribute("aria-expanded") !== "true"),
+);
+navigation.addEventListener("click", (event) => {
+  if (event.target.closest("a") && mobile.matches) setMenu(false);
 });
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    menuButton.getAttribute("aria-expanded") === "true"
+  ) {
+    setMenu(false);
+    menuButton.focus();
+  }
+});
+document.addEventListener("click", (event) => {
+  if (!header.contains(event.target) && mobile.matches) setMenu(false);
+});
+mobile.addEventListener("change", syncMenu);
+syncMenu();
+
+const sectionLinks = [...navigation.querySelectorAll('a[href^="#"]')];
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        sectionLinks.forEach((link) => {
+          if (link.hash === `#${entry.target.id}`)
+            link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      }
+    },
+    { rootMargin: "-15% 0px -55% 0px", threshold: 0 },
+  );
+  document
+    .querySelectorAll("main section[id]")
+    .forEach((section) => observer.observe(section));
+}
+
+const copyButton = document.querySelector(".copy-email");
+copyButton.hidden = false;
+copyButton.addEventListener("click", async () => {
+  const status = document.querySelector(".copy-status");
+  try {
+    await navigator.clipboard.writeText("ambawattaj@gmail.com");
+    status.textContent = "Email address copied.";
+  } catch {
+    status.textContent = "Select the email address above to copy it.";
+  }
+});
+document.querySelector("#year").textContent = new Date().getFullYear();
+
+// Animate on arrival without hiding content when scripts or observers fail.
+if ("IntersectionObserver" in window) {
+  const reveal = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("scroll-enter");
+      reveal.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".section-heading, .project, .project-row, .about-copy, .skill, .contact-details")
+    .forEach((element) => reveal.observe(element));
+}
