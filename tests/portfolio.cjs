@@ -29,7 +29,9 @@ fs.mkdirSync(output, { recursive: true });
       await page.setViewportSize({ width, height });
       await page.goto(url);
       await page.evaluate(async () => {
-        await Promise.all([...document.images].map(image => image.decode()));
+        // Lazy images far below the fold never start loading on their own, so
+        // decode() would wait forever. Ask for each one before checking it.
+        await Promise.all([...document.images].map(image => { image.loading = 'eager'; return image.decode(); }));
       });
       const checks = await page.evaluate(() => ({
         overflow: document.documentElement.scrollWidth > innerWidth,

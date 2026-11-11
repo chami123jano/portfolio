@@ -9,8 +9,13 @@ External project links and email applications need their own connectivity.
 - Edit portfolio content and destination links in `index.html`.
 - Edit the responsive design in `style.css`.
 - Replace `assets/cv.pdf` to update every CV link.
-- Project previews show JARVIS's test console and Lanka One's initial home
-  screen. They are screenshots, not interactive demos.
+- Project previews are screenshots, not interactive demos: the SPC
+  Procurement System's KPI dashboard (from its user manual, demo data only),
+  PharmaFlow's billing screen (a fresh demo database, no shop data), JARVIS's
+  test console and Lanka One's home screen. Never use a screenshot that shows
+  real SPC records or the pharmacy's name or sales.
+- The CV is built from `d:\me\cv\C_J_Ambawatta_CV.html`; print that to PDF and
+  copy it over `assets/cv.pdf`.
 - `scene3d.js` renders the interactive hero sculpture with a locally bundled
   Three.js build. Motion pauses offscreen, in background tabs, or with the
   pause control. Reduced-motion preferences are respected.

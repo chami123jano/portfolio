@@ -313,6 +313,16 @@ h1 > span {
 .lanka-image {
   background: #eff4f0;
 }
+.spc-image {
+  background: #eaf2fa;
+}
+.pharmaflow-image {
+  background: #f6f8fb;
+}
+.project > .project-note {
+  font-size: 13px;
+  color: var(--muted);
+}
 .image-link {
   position: absolute;
   bottom: 14px;
