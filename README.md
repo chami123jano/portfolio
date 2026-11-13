@@ -14,7 +14,7 @@ External project links and email applications need their own connectivity.
   PharmaFlow's billing screen (a fresh demo database, no shop data), JARVIS's
   test console and Lanka One's home screen. Never use a screenshot that shows
   real SPC records or the pharmacy's name or sales.
-- The CV is built from `d:\me\cv\C_J_Ambawatta_CV.html`; print that to PDF and
+- The CV is built from `d:\me\personal\cv\C_J_Ambawatta_CV.html`; print that to PDF and
   copy it over `assets/cv.pdf`.
 - `scene3d.js` renders the interactive hero sculpture with a locally bundled
   Three.js build. Motion pauses offscreen, in background tabs, or with the
